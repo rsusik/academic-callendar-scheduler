@@ -202,7 +202,7 @@ export default defineComponent({
     },
 
     addHoliday: function(col, rowIdx, colIdx) {
-      let dateStr = `${this.dateToString(col['date'])}`
+      let dateStr = `${this.dateToString(col['old']?col['old']['date']:col['date'])}`
       if (this.holidays.includes(dateStr)) {
         this.removeHoliday(dateStr)
       } else {
@@ -240,6 +240,32 @@ export default defineComponent({
       }
       return sum
     },
+
+    getHolidaysInCalendar: function() {
+      let sum = 0
+      let prev = 0
+      let endDate = undefined
+      
+      do {
+        endDate = new Date(this.startDate)
+        endDate.setDate(endDate.getDate()+this.t*7 + sum + Math.floor(sum/2)*2 )
+        prev = sum
+        sum = this.holidays
+        .filter( (el) => {
+          return new Date(el) >= new Date(this.startDate) 
+              && new Date(el) <= endDate
+              && [1, 2, 3, 4, 5].includes((new Date(el)).getDay())
+        }).length
+      } while (sum != prev)
+
+      return this.holidays
+      .filter( (el) => {
+        return new Date(el) >= new Date(this.startDate) 
+            && new Date(el) <= endDate
+            && [1, 2, 3, 4, 5].includes((new Date(el)).getDay())
+      }).sort()
+      
+    }
 
   },
 
@@ -292,10 +318,6 @@ export default defineComponent({
 
     partError: function() {
       return this.getError('part')
-    },
-
-    f: function() {
-      return this.holidaysInCalendar.length
     },
 
     weekdays: function() {
@@ -359,12 +381,11 @@ export default defineComponent({
     },
 
     holidaysInCalendar: function() {
-      return this.holidays
-        .filter( (el) => {
-          return new Date(el) >= new Date(this.startDate) 
-              && new Date(el) <= new Date(this.endDate)
-              && [1, 2, 3, 4, 5].includes((new Date(el)).getDay())
-        }).sort()
+      return this.getHolidaysInCalendar()
+    },
+
+    f: function() {
+      return this.holidaysInCalendar.length
     },
 
     w: function() {
@@ -485,7 +506,7 @@ export default defineComponent({
       let part1elements = this.F.filter((el) => {return el['part'] == 1})
       for (let el of part1elements) {
         let spareInPart2 = C.flat().filter( 
-          (x) => x['weekday'] == el['weekday'] && x['part'] == 2 
+          (x) => x['weekday'] == el['weekday'] && x['parity'] == el['parity'] && x['part'] == 2 && !x['free']
         )
         if (spareInPart2.length <= 0) {
           //error (should never happen)
