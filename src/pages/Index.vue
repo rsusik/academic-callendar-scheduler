@@ -62,7 +62,7 @@
       />EN</div>
     </div>
     </div>
-    <div class="q-gutter-xs row bg-cyan-1 rounded-borders q-pa-xs" style="max-width: 1024px; min-height:73px; border: 2pt solid #33a;">
+    <div class="q-gutter-xs row bg-cyan-1 rounded-borders q-pa-xs q-mx-sm" style="max-width: 1024px; min-height:73px; border: 2pt solid #33a;">
     <q-badge color="red">{{holidaysBadgeLbl}}:</q-badge>
     <div>
     <q-chip
@@ -345,7 +345,7 @@ export default defineComponent({
     },
 
     title: function() {
-      return this.english ? 'Academic calendar generator' : 'Generator kalendarza semestralnego'
+      return this.english ? 'Academic calendar scheduler' : 'Generator kalendarza semestralnego'
     },
 
     parametersLbl: function() {
