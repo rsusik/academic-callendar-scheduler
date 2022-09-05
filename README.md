@@ -1,8 +1,30 @@
-# Academic calendar (academic-calendar)
+# Academic calendar scheduler
 
-Academic calendar
+## About
 
-## Install the dependencies
+Academic calendar scheduler was created for IdeaBox initiative that is 
+annual event held at Lodz University of Technology (TUL) 
+where employees and students can submit their ideas to improve 
+working and studying at the university.
+
+Available at: (TODO)
+
+The algorithm which is a core of the project is base of research paper.
+
+
+## Requirements
+
+* JavaScript
+* Node (v16.14.0)
+* Npm (v8.15.1)
+* Quasar (v1.2.1)
+
+_The code was tested on Linux 64-bit OS (Fedora and Arch distributions) and should also work on other systems (such as Windows and Mac OS) if all requirements are met, but it was not verified._
+
+
+## Running
+
+### Install the dependencies
 
 ```bash
 npm install
@@ -31,7 +53,3 @@ npm run format
 ```bash
 quasar build
 ```
-
-### Customize the configuration
-
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
