@@ -7,7 +7,7 @@ annual event held at Lodz University of Technology (TUL)
 where employees and students can submit their ideas to improve 
 working and studying at the university.
 
-Available at: (TODO)
+Available at: https://rsusik.github.io/academic-callendar-scheduler/
 
 The algorithm which is a core of the project is base of research paper.
 
